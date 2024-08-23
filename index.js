@@ -5,8 +5,11 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-//Membuat router disini
-var barangsRouter = require('./routes/cms/users');
+//Memanggil model disini
+var User = require('./routes/cms/users');
+//Memanggil model disini
+
+
 
 var app = express();
 app.use(express.json()) // for parsing application/json
@@ -22,8 +25,12 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+
+
 //membuat router disini
-app.use('/pengguna', barangsRouter);;
+app.use('/users', User);
+//membuat router disini
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -42,9 +49,3 @@ app.use(function(err, req, res, next) {
 });
 
 module.exports = app;
-
-//cara menjalankan : ketika "npm start" atau "nodemon bin/wwww"
-//jalankan pada postman
-//http://localhost:3000/anwar
-
-//perhatian : insertdata type => Row dan pilih json

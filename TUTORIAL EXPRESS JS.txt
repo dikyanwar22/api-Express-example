@@ -1,0 +1,8 @@
+Pertama Install NodeJS sebagai runtime (pilih yang versi LTS)
+Install nodemon => npm install -g nodemon
+
+
+cara menjalankan : ketik "npm start" atau "nodemon bin/wwww"
+jalankan pada postman => http://localhost:3000/users
+
+perhatian : insert data type => Row dan pilih json
