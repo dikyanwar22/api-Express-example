@@ -12,3 +12,7 @@ perhatian : insert data type => Row dan pilih json
 untuk login => http://localhost:3000/users/login
 tipe login => POST
 lalu, pilih Body kemudian x-www-form-urlencoded
+
+
+untuk setting token:
+pilih Authorization => lalu Bearer Token (kemudian masukkan kode token)

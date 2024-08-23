@@ -7,13 +7,11 @@ const verifyToken = require('../../verifyToken');
 const { sequelize } = require('../../models');
 const { QueryTypes } = require('sequelize');
 
-const jwt = require('jsonwebtoken');
-// Secret key yang digunakan untuk sign JWT
-const SECRET_KEY = 'your_secret_key';
-
 const { M_users } = require('../../models'); //sesuai nama pada model
 const { response } = require('express');
 
+const jwt = require('jsonwebtoken');
+const SECRET_KEY = 'your_secret_key';
 
 //view data
 router.get('/', verifyToken, async (req, res) => {
