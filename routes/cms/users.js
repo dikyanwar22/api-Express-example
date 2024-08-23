@@ -2,6 +2,8 @@ var express = require('express');
 var router = express.Router();
 //Membuat notifikasi disini
 const notification = require('../../response');
+const verifyToken = require('../../verifyToken');
+
 const { sequelize } = require('../../models');
 const { QueryTypes } = require('sequelize');
 
@@ -14,7 +16,7 @@ const { response } = require('express');
 
 
 //view data
-router.get('/', async(req, res) => {
+router.get('/', verifyToken, async (req, res) => {
     try {
         const query = "SELECT * FROM users";
         const data = await sequelize.query(query, { type: QueryTypes.SELECT });
