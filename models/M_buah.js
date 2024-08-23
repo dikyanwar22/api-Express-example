@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-    const variable = sequelize.define('M_users', {
+    const variable = sequelize.define('M_buah', {
 
       id: {
         type: DataTypes.BIGINT,
@@ -11,20 +11,13 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false
       },
-      email: {
-        type: DataTypes.STRING,
-        allowNull: false
-      },
-      password: {
-        type: DataTypes.TEXT,
-      },
-      hp: {
+      harga: {
         type: DataTypes.STRING,
         allowNull: false
       }
 
     }, {
-        tableName: 'users' //nama tabel pada database
+        tableName: 'buah' //nama tabel pada database
     });
 
     return variable;

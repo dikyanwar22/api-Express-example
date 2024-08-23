@@ -7,6 +7,7 @@ var logger = require('morgan');
 
 //Memanggil model disini
 var User = require('./routes/cms/users');
+var Buah = require('./routes/cms/buah');
 //Memanggil model disini
 
 
@@ -29,6 +30,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //membuat router disini
 app.use('/users', User);
+app.use('/buah', User);
+
 //membuat router disini
 
 
