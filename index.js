@@ -30,7 +30,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //membuat router disini
 app.use('/users', User);
-app.use('/buah', User);
+app.use('/buah', Buah);
 
 //membuat router disini
 
