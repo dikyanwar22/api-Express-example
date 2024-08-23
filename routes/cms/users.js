@@ -18,6 +18,16 @@ router.get('/', async(req, res) => {
     notification(200, data, "Data berhasil ditampilkan", res);
 });
 
+//membuat login menampilkan jwt
+router.get('/login', async(req, res) => {
+    let query = "SELECT * FROM users";
+    const data = await sequelize.query(query,{type: QueryTypes.SELECT});
+    notification(200, data, "Data berhasil ditampilkan", res);
+});
+
+
+
+
 //view data by id
 router.get('/barang/:id', async(req, res) => {
     const id = req.params.id;
