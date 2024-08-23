@@ -1,0 +1,20 @@
+version: "3.8"
+services:
+  api-regis:
+    container_name: watchis-api-regis
+    ports:
+      - "3000:3000"
+    image: dockermaafin/watchis-api-regis:latest
+    env_file:
+      - ./.env
+    environment:
+      NODE_ENV: "development"
+    volumes:
+      - .:/www
+    networks:
+      - watchis
+    command: nodemon bin/www
+
+networks:
+  watchis:
+    external: true
