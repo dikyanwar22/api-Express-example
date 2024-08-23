@@ -11,6 +11,10 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false
       },
+      username: {
+        type: DataTypes.STRING,
+        allowNull: false
+      },
       email: {
         type: DataTypes.STRING,
         allowNull: false
@@ -21,10 +25,11 @@ module.exports = (sequelize, DataTypes) => {
       hp: {
         type: DataTypes.STRING,
         allowNull: false
-      }
+      },
 
     }, {
-        tableName: 'users' //nama tabel pada database
+        tableName: 'users', //nama tabel pada database
+        timestamps: true
     });
 
     return variable;

@@ -2,10 +2,12 @@ var express = require('express');
 var router = express.Router();
 //Membuat notifikasi disini
 const notification = require('../../response');
-
 const { sequelize } = require('../../models');
-
 const { QueryTypes } = require('sequelize');
+
+const jwt = require('jsonwebtoken');
+// Secret key yang digunakan untuk sign JWT
+const SECRET_KEY = 'your_secret_key';
 
 const { M_users } = require('../../models'); //sesuai nama pada model
 const { response } = require('express');
@@ -13,17 +15,61 @@ const { response } = require('express');
 
 //view data
 router.get('/', async(req, res) => {
-    let query = "SELECT * FROM users";
-    const data = await sequelize.query(query,{type: QueryTypes.SELECT});
-    notification(200, data, "Data berhasil ditampilkan", res);
+    try {
+        const query = "SELECT * FROM users";
+        const data = await sequelize.query(query, { type: QueryTypes.SELECT });
+        notification(200, data, "Data berhasil ditampilkan", res);
+    } catch (error) {
+        notification(500, null, "Terjadi kesalahan", res);
+    }
 });
 
-//membuat login menampilkan jwt
-router.get('/login', async(req, res) => {
-    let query = "SELECT * FROM users";
-    const data = await sequelize.query(query,{type: QueryTypes.SELECT});
-    notification(200, data, "Data berhasil ditampilkan", res);
+// Login and generate JWT token
+router.post('/login', async (req, res) => {
+    const { username, password } = req.body; // Changed from req.query to req.body
+
+    // Hash the provided password
+    const hashedPassword = password;
+
+    // Replace this with your actual logic for fetching the user from the database
+    const storedUser = await M_users.findOne({ where: { username } });
+
+    if (storedUser && hashedPassword === storedUser.password) {
+        // Data to be saved in the token
+        const payload = {
+            username: storedUser.username,
+            role: storedUser.role // Assuming you have a role field in your user table
+        };
+
+        // Generate JWT token
+        const token = jwt.sign(payload, SECRET_KEY, { expiresIn: '1h' });
+
+        res.json({
+            data: storedUser,
+            message: 'Login successful',
+            token: token
+        });
+    } else {
+        res.status(401).json({ message: 'Invalid credentials' });
+    }
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
